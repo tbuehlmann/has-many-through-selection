@@ -2,6 +2,8 @@
 
 In this Rails 5.1 example app we can manage a Group and its Members using one form with checkboxes.
 
+![Manage Group](https://raw.githubusercontent.com/tbuehlmann/has-many-through-selection/master/group.png "Manage Group")
+
 ## Setup
 
 ```sh
