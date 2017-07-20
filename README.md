@@ -49,10 +49,10 @@ Here we keep the first two Memberships and remove the third.
 
 ## The Important Code Parts
 
-- app/models/group.rb
-- app/models/membership.rb
-- app/controllers/groups_controller.rb
-- app/views/groups/_form.html.erb
+- [app/models/group.rb](https://github.com/tbuehlmann/has-many-through-selection/blob/master/app/models/group.rb#L2-L5)
+- [app/models/membership.rb](https://github.com/tbuehlmann/has-many-through-selection/blob/master/app/models/membership.rb#L3)
+- [app/controllers/groups_controller.rb](https://github.com/tbuehlmann/has-many-through-selection/blob/master/app/controllers/groups_controller.rb#L49-L51)
+- [app/views/groups/_form.html.erb](https://github.com/tbuehlmann/has-many-through-selection/blob/master/app/views/groups/_form.html.erb#L22-L42)
 
 ## Remark
 
