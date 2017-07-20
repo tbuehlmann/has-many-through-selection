@@ -1,0 +1,48 @@
+<%= form_with(model: group, local: true) do |f| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, 'error') %> prohibited this group from being saved:</h2>
+
+      <ul>
+        <% group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, id: 'group_name' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :users %>
+
+    <% @users.each do |user| %>
+      <% membership = group.memberships.find { |m| m.user_id == user.id } %>
+
+      <% if membership %>
+        <% existing = true %>
+      <% else %>
+        <% membership = group.memberships.build(user: user) %>
+        <% existing = false %>
+      <% end %>
+
+      <%= f.fields_for :memberships, membership do |membership_fields| %>
+        <%= membership_fields.hidden_field :user_id %>
+
+        <div class="field">
+          <%= membership_fields.label :_destroy do %>
+            <%= membership_fields.check_box :_destroy, {checked: existing}, '0', '1' %>
+            <%= user.name %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
