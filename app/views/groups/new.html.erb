@@ -1,7 +1,7 @@
 <h1>Create Group</h1>
 
 <p>
-  <%= link_to 'Back to Groups', root_url %>
+  <%= link_to "Back to Groups", root_url %>
 </p>
 
-<%= render 'form', group: @group %>
+<%= render "form", group: @group, users: @users %>

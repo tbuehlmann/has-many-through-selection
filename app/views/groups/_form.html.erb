@@ -1,7 +1,7 @@
 <%= form_with(model: group, local: true) do |f| %>
   <% if group.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(group.errors.count, 'error') %> prohibited this group from being saved:</h2>
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
       <ul>
         <% group.errors.full_messages.each do |message| %>
@@ -13,28 +13,22 @@
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name, id: 'group_name' %>
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
     <%= f.label :users %>
 
-    <% @users.each do |user| %>
-      <% membership = group.memberships.find { |m| m.user_id == user.id } %>
-
-      <% if membership %>
-        <% existing = true %>
-      <% else %>
-        <% membership = group.memberships.build(user: user) %>
-        <% existing = false %>
-      <% end %>
+    <% users.each do |user| %>
+      <% membership = group.memberships.find { |membership| membership.user_id == user.id } %>
+      <% membership ||= Membership.new(group: group, user: user).tap(&:mark_for_destruction) %>
 
       <%= f.fields_for :memberships, membership do |membership_fields| %>
         <%= membership_fields.hidden_field :user_id %>
 
         <div class="field">
           <%= membership_fields.label :_destroy do %>
-            <%= membership_fields.check_box :_destroy, {checked: existing}, '0', '1' %>
+            <%= membership_fields.check_box :_destroy, {checked: !membership.marked_for_destruction?}, "0", "1" %>
             <%= user.name %>
           <% end %>
         </div>

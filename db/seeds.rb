@@ -1,9 +1,9 @@
 users = ['Alice', 'Bob', 'Carol', 'Dave', 'Erin', 'Frank'].map do |name|
-  User.create(name: name)
+  User.create!(name: name)
 end
 
 groups = ['Programming', 'Tennis', 'Cars', 'Weather', 'Food'].map do |name|
-  Group.create(name: name)
+  Group.create!(name: name)
 end
 
 groups.each do |group|

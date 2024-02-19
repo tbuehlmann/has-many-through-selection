@@ -1,25 +1,13 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
-  "https://github.com/#{repo_name}.git"
-end
+ruby "3.3.0"
 
-gem 'rails', '~> 5.1'
+gem "rails", "7.1.3"
 
-gem 'mini_racer'
-gem 'puma'
-gem 'sass-rails'
-gem 'sqlite3'
-gem 'turbolinks'
-gem 'uglifier'
+gem "sqlite3"
+gem "puma"
+gem "bootsnap", require: false
 
-group :development, :test do
-  gem 'pry-byebug'
-  gem 'pry-doc'
-  gem 'pry-rails'
-end
-
-group :development do
-  gem 'listen'
-end
+gem "propshaft"
+gem "importmap-rails"
+gem "turbo-rails"

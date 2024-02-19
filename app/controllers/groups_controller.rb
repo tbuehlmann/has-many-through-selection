@@ -14,9 +14,9 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     if @group.save
-      redirect_to root_url, notice: 'Group created.'
+      redirect_to root_url, notice: "Group created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,15 +25,15 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to root_url, notice: 'Group updated.'
+      redirect_to root_url, notice: "Group updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @group.destroy
-    redirect_to root_url, notice: 'Group deleted.'
+    redirect_to root_url, notice: "Group deleted."
   end
 
   private

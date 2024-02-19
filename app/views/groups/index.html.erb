@@ -1,7 +1,7 @@
 <h1>Groups</h1>
 
 <% if @groups.any? %>
-  <p><%= link_to 'Create Group', new_group_path %></p>
+  <p><%= link_to "Create Group", new_group_path %></p>
 
   <table>
     <thead>
@@ -16,13 +16,13 @@
       <% @groups.each do |group| %>
         <tr>
           <td><%= group.name %></td>
-          <td><%= group.users.map(&:name).sort.join(', ') %></td>
-          <td><%= link_to 'Update Group', edit_group_path(group) %></td>
-          <td><%= link_to 'Delete Group', group_path(group), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <td><%= group.users.map(&:name).sort.join(", ") %></td>
+          <td><%= link_to "Edit", edit_group_path(group) %></td>
+          <td><%= link_to "Delete", group_path(group), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>There are no Groups yet. <%= link_to 'Create', new_group_path %> one!</p>
+  <p>There are no Groups yet. <%= link_to "Create", new_group_path %> one!</p>
 <% end %>
